@@ -209,7 +209,7 @@ class DataProcessor:
         logger.info(f"Selected {len(self.selected_feature_names)} features")
         logger.info("Preprocessing pipeline completed successfully")
 
-        return X_train_selected, X_test_scaled, y_test, self.feature_names
+        return X_train_selected, X_test_selected, y_test, self.feature_names
 
     def _encode_categorical(
         self,
