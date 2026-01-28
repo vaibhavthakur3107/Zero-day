@@ -169,8 +169,8 @@ class DataProcessor:
 
         # Get indices of benign samples
         benign_mask = y_train_all == 0
-        X_train_benign_raw = train_data[benign_mask].drop('label', axis=1)
-        X_test_raw = test_data.drop('label', axis=1)
+        X_train_benign_raw = train_data[benign_mask].drop(['label', 'difficulty'], axis=1)
+        X_test_raw = test_data.drop(['label', 'difficulty'], axis=1)
 
         logger.info(f"Benign training samples: {len(X_train_benign_raw)}")
         logger.info(f"Total test samples: {len(X_test_raw)}")
@@ -209,7 +209,7 @@ class DataProcessor:
         logger.info(f"Selected {len(self.selected_feature_names)} features")
         logger.info("Preprocessing pipeline completed successfully")
 
-        return X_train_selected, X_test_scaled, y_test, self.feature_names
+        return X_train_selected, X_test_selected, y_test, self.feature_names
 
     def _encode_categorical(
         self,
@@ -371,8 +371,8 @@ class DataProcessor:
         Returns:
             Preprocessed test data ready for prediction.
         """
-        # Drop label
-        X_test = test_data.drop('label', axis=1)
+        # Drop label and difficulty columns
+        X_test = test_data.drop(['label', 'difficulty'], axis=1)
 
         # Encode categorical features
         for col in CATEGORICAL_COLUMNS:

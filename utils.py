@@ -6,6 +6,7 @@ and general-purpose operations used throughout the detection pipeline.
 """
 
 import logging
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 import warnings
 
@@ -62,7 +63,7 @@ def load_csv_safely(filepath: str, column_names: Optional[List[str]] = None) -> 
 
     try:
         if column_names:
-            df = pd.read_csv(filepath, names=column_names, header=0)
+            df = pd.read_csv(filepath, names=column_names, header=None)
         else:
             df = pd.read_csv(filepath)
 

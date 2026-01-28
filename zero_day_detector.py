@@ -54,7 +54,8 @@ from config import (
     ISOLATION_FOREST,
     ONE_CLASS_SVM,
     LOF,
-    LOG_FORMAT
+    LOG_FORMAT,
+    NSL_KDD_COLUMNS
 )
 
 from utils import (
@@ -212,8 +213,8 @@ class ZeroDayDetector:
                 )
 
         # Load raw data
-        train_data = load_csv_safely(train_path)
-        test_data = load_csv_safely(test_path)
+        train_data = load_csv_safely(train_path, NSL_KDD_COLUMNS)
+        test_data = load_csv_safely(test_path, NSL_KDD_COLUMNS)
 
         print(f"\nDataset Statistics:")
         print(f"  Training samples: {len(train_data)}")
